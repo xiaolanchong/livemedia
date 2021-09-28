@@ -37,14 +37,18 @@ extern "C" int initializeWinsockIfNecessary();
 #include <fcntl.h>
 #define initializeWinsockIfNecessary() 1
 #endif
-#if defined(__WIN32__) || defined(_WIN32) || defined(_QNX4)
+#if defined(__WIN32__) || defined(_WIN32)
+#include <winsock2.h>
+#elif defined(_QNX4)
 #else
 #include <signal.h>
 #define USE_SIGNALS 1
 #endif
 #ifndef NO_GETIFADDRS
 #include <ifaddrs.h>
+#if not defined(__WIN32__) && not defined(_WIN32)
 #include <net/if.h>
+#endif
 #endif
 #include <stdio.h>
 
