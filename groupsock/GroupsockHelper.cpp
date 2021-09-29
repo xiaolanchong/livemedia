@@ -45,9 +45,11 @@ extern "C" int initializeWinsockIfNecessary();
 #define USE_SIGNALS 1
 #endif
 #ifndef NO_GETIFADDRS
+#if !defined(__WIN32__) && !defined(_WIN32)
 #include <ifaddrs.h>
-#if not defined(__WIN32__) && not defined(_WIN32)
 #include <net/if.h>
+#else
+#include "ifaddrs.h"
 #endif
 #endif
 #include <stdio.h>
