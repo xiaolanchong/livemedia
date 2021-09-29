@@ -1,14 +1,14 @@
 
-include_directories(../livemedia/include)
+include_directories(../liveMedia/include)
 
 if(WIN32)
   set(system_lib Iphlpapi.lib ws2_32.lib)
 else()
-  set(system_lib "")
+  set(system_lib ssl crypto)
 endif()
 
 set(shared_src announceURL.hh announceURL.cpp)
-set(lib_list groupsock livemedia UsageEnvironment BasicUsageEnvironment)
+set(lib_list livemedia groupsock BasicUsageEnvironment UsageEnvironment)
 
 add_executable(testMPEG4VideoStreamer
                 testMPEG4VideoStreamer.cpp ${shared_src})
